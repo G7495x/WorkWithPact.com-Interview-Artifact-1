@@ -1,0 +1,9 @@
+import './App.scss'
+
+export default function App() {
+	return (
+		<div id="App">
+			<h1>OCCASIONALLY, WE OFFER PERSPECTIVES ON THE DIRECT-TO-CONSUMER LANDSCAPE, RETAIL INNOVATIONS, HAPPENINGS AROUND PACT AND THE ODD CREATIVE EXPERIMENT.</h1>
+		</div>
+	)
+}

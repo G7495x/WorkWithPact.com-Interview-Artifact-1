@@ -1,0 +1,17 @@
+@import '_variables';
+
+:root{
+	position: fixed;
+}
+
+body{
+	overflow: hidden;
+	font-family: 'Overpass',sans-serif;
+	font-weight: 500;
+
+	@include bg-color($gray-0000);
+	@include text-color($gray-1000);
+}
+
+body,
+#root{ display: contents }

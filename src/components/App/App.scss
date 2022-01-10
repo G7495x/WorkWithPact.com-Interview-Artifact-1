@@ -1,0 +1,7 @@
+@import '../../_variables';
+
+body:not(.loaded) #App{ opacity: 0; }
+
+#App{
+	transition: opacity 5s;
+}
