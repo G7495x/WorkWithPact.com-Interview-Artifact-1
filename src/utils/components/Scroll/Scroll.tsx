@@ -217,17 +217,17 @@ function wheel(e:React.WheelEvent<HTMLElement>){
 	const {clientWidth,scrollWidth}=scrollViewport
 
 	// Horizontal scrolling support for mouse wheel
-	if(scrollX && !scrollY && deltaX===0){
-		deltaX=deltaY
-		deltaY=0
-
-		if(!smoothMode){ // Smooth scrolling handled below
-			// scrollViewport.scrollLeft+=deltaX
-			// Browser smooth scroll support
-			scrollViewport.scrollLeftTarget=clamp((scrollViewport.scrollLeftTarget??scrollViewport.scrollLeft)+deltaX,0,scrollWidth-clientWidth)
-			scrollViewport.scrollLeft=scrollViewport.scrollLeftTarget
-		}
-	}
+	// if(scrollX && !scrollY && deltaX===0){
+	// 	deltaX=deltaY
+	// 	deltaY=0
+	//
+	// 	if(!smoothMode){ // Smooth scrolling handled below
+	// 		// scrollViewport.scrollLeft+=deltaX
+	// 		// Browser smooth scroll support
+	// 		scrollViewport.scrollLeftTarget=clamp((scrollViewport.scrollLeftTarget??scrollViewport.scrollLeft)+deltaX,0,scrollWidth-clientWidth)
+	// 		scrollViewport.scrollLeft=scrollViewport.scrollLeftTarget
+	// 	}
+	// }
 
 	// Smooth scrolling
 	if(smoothMode){

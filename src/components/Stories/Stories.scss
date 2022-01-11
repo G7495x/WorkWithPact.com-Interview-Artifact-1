@@ -15,9 +15,34 @@
 
 	>.scroll-container{ margin: 80px 0 !important; }
 
+	.scroll-container{
+		//touch-action: pan-y;
+		user-select: none;
+		.scroll-bar-x{ display: none }
+	}
+
+	.story-card-row{
+		@include hover{
+			img{ filter: saturate(1) sepia(0) }
+		}
+	}
+
 	.story-card{
 		width: min-content;
-		img{ height: 548px; }
+		img{
+			width: 439px;
+			max-width: calc(100vw - 160px);
+			pointer-events: none;
+			transition:
+				filter 5s;
+		}
+		@include hover{
+			img{
+				filter: none;
+				transition:
+					filter 1s;
+			}
+		}
 	}
 	
 	.vertical-text{
