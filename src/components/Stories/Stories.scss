@@ -1,0 +1,32 @@
+@import '../../_variables';
+
+#Stories{
+	>*{ max-width: 100% }
+
+	#big-text{
+		padding: 60px 140px;
+		color: hsla(35deg,100%,97.5%,.25);
+		@include media-breakpoint(xl){ font-size: 70px !important; }
+		line-height: 1.1;
+
+		transition:
+			line-height 5s;
+	}
+
+	>.scroll-container{ margin: 80px 0 !important; }
+
+	.story-card{
+		width: min-content;
+		img{ height: 548px; }
+	}
+	
+	.vertical-text{
+		margin-bottom: 150px !important;
+	}
+}
+
+body:not(.loaded) #Stories{
+	#big-text{
+		line-height: 2.2;
+	}
+}

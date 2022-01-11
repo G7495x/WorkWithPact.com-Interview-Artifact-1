@@ -1,9 +1,17 @@
-import './App.scss'
+import React from 'react'
 
-export default function App() {
+import './App.scss'
+import Scroll from '../../utils/components/Scroll/Scroll'
+import Stories from '../Stories/Stories'
+import StartProject from '../StartProject/StartProject'
+
+export default function App(){
 	return (
-		<div id="App">
-			<h1>OCCASIONALLY, WE OFFER PERSPECTIVES ON THE DIRECT-TO-CONSUMER LANDSCAPE, RETAIL INNOVATIONS, HAPPENINGS AROUND PACT AND THE ODD CREATIVE EXPERIMENT.</h1>
-		</div>
+		<Scroll id="App" className="scroll-y smooth-wheel">
+			<div className="scroll-content-wrapper col-12">
+				<Stories/>
+				<StartProject/>
+			</div>
+		</Scroll>
 	)
 }

@@ -1,7 +1,15 @@
 @import '../../_variables';
 
-body:not(.loaded) #App{ opacity: 0; }
+body:not(.loaded) #App{
+	opacity: 0;
+}
 
 #App{
+	position: absolute;
+	@include fit(0);
+	@include bg-color($gray-0175);
+	@include text-color(hsl(35,100%,97.5%));
 	transition: opacity 5s;
+
+	>div>.scroll-content-wrapper{ padding: 140px 0 !important; }
 }

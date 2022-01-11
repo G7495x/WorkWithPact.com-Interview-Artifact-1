@@ -15,3 +15,23 @@ body{
 
 body,
 #root{ display: contents }
+
+.vertical-text{
+	transform: rotateZ(180deg);
+	writing-mode: vertical-rl;
+	//text-orientation: mixed;
+}
+
+h1{
+	@include media-breakpoint(xl){ font-size: 70px }
+}
+
+button{
+	height: 60px;
+	border: 1px solid currentColor;
+	border-radius: 60px;
+	padding: 0 35px;
+	background-color: transparent;
+	color: inherit;
+	box-shadow: none;
+}

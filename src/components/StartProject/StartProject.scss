@@ -1,0 +1,16 @@
+@import '../../_variables';
+
+#StartProject{
+	margin: 0 70px;
+	border-radius: 10px;
+	padding: 140px 70px !important;
+	@include bg-color(hsl(170,25%,75%));
+	@include text-color($gray-0175);
+	>h5.col-6{
+		padding: 0 70px 0 140px;
+		line-height: 1.5;
+	}
+	button{
+		margin-top: 35px;
+	}
+}

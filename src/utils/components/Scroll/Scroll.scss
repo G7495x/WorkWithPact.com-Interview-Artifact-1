@@ -1,0 +1,130 @@
+// TODO-FUTURE: @property rules
+
+// Hide Scrollbars ------------------------------------------------------------
+
+.scroll-viewport{
+	scrollbar-width: none;
+	&::-webkit-scrollbar{
+		-webkit-appearance: none;
+		display: none;
+		width: 0;
+		height: 0;
+	}
+}
+
+// Container Styles -----------------------------------------------------------
+
+.scroll-container{
+	--smoothScrollDuration: 2;
+
+	--scrollRight: calc(var(--scrollWidth) - var(--scrollLeft) - var(--scrollClientWidth));
+	--scrollBottom: calc(var(--scrollHeight) - var(--scrollTop) - var(--scrollClientHeight));
+	--scrollXPhase: 0; // Handling 0/0 case
+	--scrollYPhase: 0; // Handling 0/0 case
+	--scrollXPhase: calc(var(--scrollLeft) / (var(--scrollWidth) - var(--scrollClientWidth)));
+	--scrollYPhase: calc(var(--scrollTop) / (var(--scrollHeight) - var(--scrollClientHeight)));
+	--scrollXDirection: clamp(-1,var(--scrollXVelocity) * 2 + 1,1);
+	--scrollYDirection: clamp(-1,var(--scrollYVelocity) * 2 + 1,1);
+
+	position: relative;
+	overflow: hidden !important; // !important resolves SuperGrids.css scroll-x scroll-y conflict
+
+	&.scroll-x{
+		>.scroll-bar-x{ display: block }
+		>.scroll-viewport{ overflow-x: scroll }
+	}
+	&.scroll-y{
+		>.scroll-bar-y{ display: block }
+		>.scroll-viewport{ overflow-y: scroll }
+	}
+	&.smooth-wheel>.scroll-viewport{ scroll-behavior: initial !important }
+}
+
+.scroll-viewport{
+	transform-style: preserve-3d;     // Needed for parallax
+	perspective: 1px;                 // Needed for parallax
+	perspective-origin: center;       // Needed for parallax
+	*{ transform-style: preserve-3d } // Needed for parallax
+
+	width: 100%;
+	height: 100%;
+	max-width: 100%;
+	max-height: 100%;
+	overflow: hidden;
+}
+
+.scroll-content-wrapper{
+	width: fit-content;
+	height: fit-content;
+	min-width: 100%;
+	min-height: 100%;
+}
+
+.scroll-viewport,
+.scroll-content-wrapper{
+	margin: 0 !important;
+	border: none !important;
+	padding: 0 !important;
+}
+
+// Scrollbar Styles -----------------------------------------------------------
+
+.scroll-bar{
+	--scrollBarThickness: 4px;
+	&:hover{ --scrollBarThickness: 8px; }
+
+	display: none;
+	position: absolute;
+	margin: 2px;
+	transition: opacity .5s;
+}
+
+.scroll-bar-x{
+	right: var(--scrollBarThickness);
+	// bottom: 0;
+	left: 0;
+
+	// Auto hide scrollbar if scrollWidth<=clientWidth
+	bottom: min(
+		calc((var(--scrollWidth) - var(--scrollClientWidth)) * 10000px - 10000px), // scrollWidth<=clientWidth
+		0px                                                                        // scrollWidth>clientWidth
+	);
+}
+
+.scroll-bar-y{
+	top: 0;
+	//right: 0;
+	bottom: var(--scrollBarThickness);
+
+	// Auto hide scrollbar if scrollHeight<=clientHeight
+	right: min(
+		calc((var(--scrollHeight) - var(--scrollClientHeight)) * 10000px - 10000px), // scrollHeight<=clientHeight
+		0px                                                                          // scrollHeight>clientHeight
+	);
+}
+
+.scroll-bar-thumb{
+	min-width: var(--scrollBarThickness);
+	min-height: var(--scrollBarThickness);
+	border-radius: 10000px;
+	touch-action: none; // @use-gesture/react.useDrag
+	transition: transform .05s;
+}
+
+.scroll-bar-thumb-x{
+	transform: translateX(calc((var(--scrollLeft) / var(--scrollClientWidth)) * 100%)); // scrollLeft / clientWidth * 100%
+	width: calc((var(--scrollClientWidth) / var(--scrollWidth)) * 100%); // clientWidth / scrollWidth * 100%
+}
+
+.scroll-bar-thumb-y{
+	transform: translateY(calc((var(--scrollTop) / var(--scrollClientHeight)) * 100%)); // scrollTop / clientHeight * 100%
+	height: calc((var(--scrollClientHeight) / var(--scrollHeight)) * 100%); // clientHeight / scrollHeight * 100%
+}
+
+// Color Styles ---------------------------------------------------------------
+
+.scroll-bar-thumb{
+	border: .5px solid rgba(white,.25);
+	background-color: rgba(black,.75);
+}
+.scroll-container:not(:hover)>.scroll-bar{ opacity: .5 }
