@@ -6,22 +6,34 @@
 	#big-text{
 		padding: 20px 40px;
 		@include media-breakpoint(md){ padding: 70px 140px }
-		color: hsla(35deg,100%,97.5%,.25);
+		opacity: .25;
 		@include media-breakpoint(xl){ font-size: 70px !important; }
 		line-height: 1.1;
+		//-webkit-text-stroke-width: .5px;
+		//-webkit-text-stroke-color: hsl(35deg,100%,97.5%);
+
+		background: hsla(35deg,100%,97.5%,.5) linear-gradient(135deg,hsl(35deg,100%,97.5%) 50%,transparent 50%) 0% 0%/200% 200%;
+		@include firefox-only{
+			background: transparent;
+			color: hsl(35deg,100%,97.5%);
+		}
+		-webkit-background-clip: text;
+		color: transparent;
 
 		transition:
-			line-height 5s;
+			transform 2.5s,
+			opacity 2.5s,
+			line-height 2.5s,
+			background-position 2.5s 2.5s;
 	}
 
 	>.scroll-container{
 		margin: 70px 0 !important;
 		@include media-breakpoint(md){ margin: 70px 0 140px !important; }
-	}
-
-	.scroll-container{
-		//touch-action: pan-y;
 		user-select: none;
+		transition:
+			transform 5s 2.5s,
+			opacity 7.5s 2.5s;
 		.scroll-bar-x{ display: none }
 	}
 
@@ -50,7 +62,7 @@
 			}
 		}
 	}
-	
+
 	.vertical-text{
 		margin-bottom: 150px !important;
 		padding: 0 40px;
@@ -60,5 +72,14 @@
 
 body:not(.loaded) #Stories{
 	#big-text{
+		transform: translateY(70px);
+		opacity: 0;
+		background-position: 100% 100%;
+		line-height: 2.2;
+		@include safari-only{ line-height: 1.1 }
+	}
+	>.scroll-container{
+		transform: translateX(140px);
+		opacity: 0;
 	}
 }

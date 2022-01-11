@@ -37,18 +37,26 @@
 			bottom: 30px;
 			width: 30px;
 			height: 30px;
+			border-radius: 50%;
+			background-color: white;
 			transition: opacity 1s, visibility 1s;
+			animation: blink 2.5s infinite;
 		}
 		body.loaded>#spinner{
 			opacity: 0;
 			visibility: hidden;
 		}
+		@keyframes blink{
+			0%{ opacity: 0 }
+			50%{ opacity: 1 }
+			100%{ opacity: 0 }
+		}
 	</style>
 </head>
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
-<!-- TODO: Add #spinner -->
 
+<div id="spinner"></div>
 <div id="root"></div>
 <!--
 	This HTML file is a template.

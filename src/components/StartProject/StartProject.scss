@@ -3,17 +3,22 @@
 #StartProject{
 	margin: 0 20px;
 	@include media-breakpoint(md){ margin: 0 70px }
-
 	border-radius: 10px;
-	padding: 70px !important;
+	padding: 50px !important;
+	@include media-breakpoint(md){ padding: 70px !important }
 	@include media-breakpoint(xl){ padding: 140px 70px !important }
 	@include bg-color(hsl(170,25%,75%));
 	@include text-color($gray-0175);
+	transition:
+		opacity 5s 2.5s;
+
 	>h5{
 		line-height: 1.5;
 		@include media-breakpoint(xl){ padding: 0 70px 0 140px }
 	}
-	button{
-		margin-top: 35px;
-	}
+	button{ margin-top: 35px; }
+}
+
+body:not(.loaded) #StartProject{
+	opacity: 0;
 }
