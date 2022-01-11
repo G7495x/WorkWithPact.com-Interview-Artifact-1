@@ -22,15 +22,16 @@ body,
 	//text-orientation: mixed;
 }
 
-h1{
-	@include media-breakpoint(xl){ font-size: 70px }
+h1,
+.md\:h1{
+	@include media-breakpoint(xl){ font-size: 70px !important }
 }
 
 button{
-	height: 60px;
+	height: auto;
 	border: 1px solid currentColor;
 	border-radius: 60px;
-	padding: 0 35px;
+	padding: 10px 35px;
 	background-color: transparent;
 	color: inherit;
 	box-shadow: none;
