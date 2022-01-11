@@ -7,6 +7,7 @@ import {useGesture} from '@use-gesture/react'
 
 let ref:MutableRefObject<HTMLElement|undefined>
 let scrollViewport:ScrollViewport
+const cursor=document.getElementById('cursor')
 export default function Stories(){
 	ref=useRef<HTMLElement>()
 	useEffect(componentDidMount,[])
@@ -15,7 +16,7 @@ export default function Stories(){
 		<h1 id="big-text" className="h3 md:h1 b900">
 			&emsp;&emsp;&emsp;OCCASIONALLY, WE OFFER PERSPECTIVES ON THE DIRECT-TO-CONSUMER LANDSCAPE, RETAIL INNOVATIONS, HAPPENINGS AROUND PACT AND THE ODD CREATIVE EXPERIMENT.
 		</h1>
-		<Scroll className="scroll-x" {...{ref,onTouchStart,onTouchEnd}} {...useGesture({onDrag})()}>
+		<Scroll className="scroll-x" {...{ref,onTouchStart,onTouchEnd,onMouseOver,onMouseLeave}} {...useGesture({onDrag})()}>
 			<div className="scroll-content-wrapper row f-nowrap f-center">
 				<div className="vertical-text one-line">LATEST STORIES</div>
 				<div className="row f-nowrap gap-x-20 f-start ml-m20 story-card-row">
@@ -41,6 +42,9 @@ function onDrag(e:any){
 
 function onTouchStart(e:any){ e.currentTarget.touch=true }
 function onTouchEnd(e:any){ e.currentTarget.touch=false }
+
+function onMouseOver(){ cursor!.classList.add('drag') }
+function onMouseLeave(){ cursor!.classList.remove('drag') }
 
 export function Story({story}:any){
 	return <div className="story-card">

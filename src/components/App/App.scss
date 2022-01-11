@@ -9,6 +9,7 @@ body:not(.loaded) #App{
 	@include fit(0);
 	@include bg-color($gray-0175);
 	@include text-color(hsl(35,100%,97.5%));
+	cursor: none !important;
 	transition: opacity 5s;
 
 	>div>.scroll-content-wrapper{

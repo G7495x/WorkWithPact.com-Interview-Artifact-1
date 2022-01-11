@@ -51,6 +51,37 @@
 			50%{ opacity: 1 }
 			100%{ opacity: 0 }
 		}
+
+		#cursor-container{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 0;
+			height: 0;
+			pointer-events: none;
+		}
+		@media (pointer: coarse){ #cursor-container{ display: none } }
+		#cursor{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background-color: white;
+			color: black;
+			transition:
+				width .5s,
+				height .5s;
+		}
+		#cursor.drag{
+			width: 80px;
+			height: 80px;
+		}
+		#cursor.drag::before{ content: 'DRAG' }
 	</style>
 </head>
 <body>
@@ -58,6 +89,14 @@
 
 <div id="spinner"></div>
 <div id="root"></div>
+<div id="cursor-container">
+	<div id="cursor"></div>
+</div>
+
+<script>
+	const cursor=document.getElementById('cursor-container')
+	document.addEventListener('mousemove',e=>cursor.style.transform=`translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`)
+</script>
 <!--
 	This HTML file is a template.
 	If you open it directly in the browser, you will see an empty page.
